@@ -55,7 +55,7 @@ namespace ReservationApp.Controllers
         // GET: Reservations/Create
         public IActionResult Create()
         {
-            ViewData["CourtId"] = new SelectList(_context.Courts, "Id", "Id");
+            ViewData["CourtId"] = new SelectList(_context.Courts, "Id", "Name");
             return View();
         }
 
@@ -73,7 +73,7 @@ namespace ReservationApp.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CourtId"] = new SelectList(_context.Courts, "Id", "Id", reservation.CourtId);
+            ViewData["CourtId"] = new SelectList(_context.Courts, "Id", "Name", reservation.CourtId);
             return View(reservation);
         }
 
