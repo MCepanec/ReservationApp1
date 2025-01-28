@@ -46,6 +46,7 @@ namespace ReservationApp.Controllers
         // GET: Courts/Create
         public IActionResult Create()
         {
+            ViewBag.Sports = new SelectList(Enum.GetValues(typeof(Sport)));
             return View();
         }
 
@@ -62,6 +63,7 @@ namespace ReservationApp.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+        
             return View(court);
         }
 

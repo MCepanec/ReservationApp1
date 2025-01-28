@@ -1,5 +1,14 @@
 namespace ReservationApp.Models
 {
+    
+    public enum Sport
+    {
+    Football,
+    Tennis,
+    Basketball,
+    Volleyball
+    }
+
     public class Court
     {
         public int Id { get; set; }
@@ -10,11 +19,4 @@ namespace ReservationApp.Models
         public bool IsAvailable { get; set; }
     }
 
-    public enum Sport
-    {
-    Football,
-    Tennis,
-    Basketball,
-    Volleyball
-    }
 }
