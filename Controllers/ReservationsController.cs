@@ -12,6 +12,7 @@ namespace ReservationApp.Controllers
 {
     public class ReservationsController : Controller
     {
+        [Authorize]
         private readonly ApplicationDbContext _context;
         private readonly UserManager<IdentityUser> _userManager;
 
@@ -24,6 +25,10 @@ namespace ReservationApp.Controllers
         // GET: Reservations
         public async Task<IActionResult> Index()
         {
+            if(User.IsInRole("User"))
+            {
+                return View(await _context.Reservation.Where(e => e.UserId == _userManager.GetUserId(User)).ToListAsync());
+            }
             var applicationDbContext = _context.Reservation.Include(r => r.Court);
             return View(await applicationDbContext.ToListAsync());
         }
