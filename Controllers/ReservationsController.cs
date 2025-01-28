@@ -10,9 +10,9 @@ using ReservationApp.Models;
 
 namespace ReservationApp.Controllers
 {
+    [Authorize]
     public class ReservationsController : Controller
     {
-        [Authorize]
         private readonly ApplicationDbContext _context;
         private readonly UserManager<IdentityUser> _userManager;
 
