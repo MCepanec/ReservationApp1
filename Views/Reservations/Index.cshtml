@@ -46,7 +46,7 @@
                 @Html.DisplayFor(modelItem => item.EndTime)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Court.Id)
+                @Html.DisplayFor(modelItem => item.Court.Name)
             </td>
             <td>
                 @if(User.Identity.IsAuthenticated && User.IsInRole("Admin"))

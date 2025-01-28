@@ -69,12 +69,29 @@ namespace ReservationApp.Controllers
             reservation.UserId = _userManager.GetUserId(User);
             if (ModelState.IsValid)
             {
+                if (IsReservationOverlapping(reservation))
+                {
+                    ModelState.AddModelError("", "The selected time slot is already booked.");
+                    ViewData["CourtId"] = new SelectList(_context.Courts, "Id", "Name", reservation.CourtId);
+                    return View(reservation);
+                }
+
                 _context.Add(reservation);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             ViewData["CourtId"] = new SelectList(_context.Courts, "Id", "Name", reservation.CourtId);
             return View(reservation);
+        }
+
+        private bool IsReservationOverlapping(Reservation reservation)
+        {
+            return _context.Reservation.Any(r =>
+                r.CourtId == reservation.CourtId &&
+                r.ReservationDate == reservation.ReservationDate &&
+                ((r.StartTime <= reservation.StartTime && r.EndTime > reservation.StartTime) ||
+                 (r.StartTime < reservation.EndTime && r.EndTime >= reservation.EndTime) ||
+                 (r.StartTime >= reservation.StartTime && r.EndTime <= reservation.EndTime)));
         }
 
         // GET: Reservations/Edit/5
