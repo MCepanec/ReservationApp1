@@ -17,18 +17,18 @@
                 <select asp-for="CourtId" class ="form-control" asp-items="ViewBag.CourtId"></select>
             </div>
             <div class="form-group">
-                <label asp-for="ReservationDate" class="control-label"></label>
-                <input asp-for="ReservationDate" class="form-control" />
+                <label asp-for="ReservationDate" class="control-label">Reservation Date</label>
+                <input asp-for="ReservationDate" class="form-control" type="date" />
                 <span asp-validation-for="ReservationDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="StartTime" class="control-label"></label>
-                <input asp-for="StartTime" class="form-control" />
+                <label asp-for="StartTime" class="control-label">Start Time</label>
+                <input asp-for="StartTime" class="form-control" type="time" step="1800" id="startTime" />
                 <span asp-validation-for="StartTime" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="EndTime" class="control-label"></label>
-                <input asp-for="EndTime" class="form-control" />
+                <label asp-for="EndTime" class="control-label">End Time</label>
+                <input asp-for="EndTime" class="form-control" type="time" step="1800" id="endTime" />
                 <span asp-validation-for="EndTime" class="text-danger"></span>
             </div>
             <div class="form-group">
