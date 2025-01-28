@@ -10,6 +10,7 @@ using ReservationApp.Models;
 
 namespace ReservationApp.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class CourtsController : Controller
     {
         private readonly ApplicationDbContext _context;
