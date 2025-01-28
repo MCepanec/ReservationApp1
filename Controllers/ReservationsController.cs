@@ -59,8 +59,9 @@ namespace ReservationApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,CourtId,UserId,ReservationDate,StartTime,EndTime")] Reservation reservation)
+        public async Task<IActionResult> Create([Bind("Id,CourtId,ReservationDate,StartTime,EndTime")] Reservation reservation)
         {
+            reservation.UserId = _userManager.GetUserId(User);
             if (ModelState.IsValid)
             {
                 _context.Add(reservation);
